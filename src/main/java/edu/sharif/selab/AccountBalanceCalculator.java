@@ -10,13 +10,15 @@ public class AccountBalanceCalculator {
     // Method to calculate balance based on transactions
     public static int calculateBalance(List<Transaction> transactions) {
         int balance = 0;
+        clearTransactionHistory();
+        
         for (Transaction t : transactions) {
             if (t.getType() == TransactionType.DEPOSIT) {
                 balance += t.getAmount();
             } else if (t.getType() == TransactionType.WITHDRAWAL) {
                 balance -= t.getAmount();
             }
-
+            transactionHistory.add(t); // Add to overall history
         }
         return balance;
     }
