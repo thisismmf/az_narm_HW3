@@ -18,7 +18,11 @@ public class AccountBalanceCalculator {
             } else if (t.getType() == TransactionType.WITHDRAWAL) {
                 balance -= t.getAmount();
             }
-            transactionHistory.add(t); // Add to overall history
+            transactionHistory.add(t);
+        }
+        // Prevent negative balances
+        if (balance < 0) {
+            balance = 0;
         }
         return balance;
     }
